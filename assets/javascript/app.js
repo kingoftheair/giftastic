@@ -1,6 +1,7 @@
-var topics = ["eagle", "dog", "cat", "dolphin", "skunk" ];
+var topics = ["skunk", "dog", "cat", "bison", "bird", "pig" ];
 
 //Add buttons for original animal topic array
+
 function renderButtons() {
     $("#topics-view").empty();
     for (var i = 0; i < topics.length; i++) {
@@ -9,7 +10,7 @@ function renderButtons() {
         a.attr("data-name", topics[i]);
         a.text(topics[i]);
         $("#topics-view").append(a);
-    }
+    } 
 } 
 
 
@@ -20,30 +21,10 @@ $("#add-topic").on("click", function(event){
     renderButtons();
 }); 
 
+
 renderButtons();
 
-//ajax call
-/*
-$("#add-topic").on("click", function(event) {
-    event.preventDefault();
-
-     
-
-    var apiKey = "1Ap9PRfNxbH1S8pDXRJkIkh2mwOKmiPR";
-
-    var queryURL = "https:api.giphy.com/v1/gifs/search?1Ap9PRfNxbH1S8pDXRJkIkh2mwOKmiPR" + singleTopic + "&limit=25&offset=0&rating=G&lang=en" + apiKey;
-
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function(response){
-        console.log(queryURL);
-        console.log(response);
-        $("#rating").text(JSON.stringify(response));
-    })
-})
-*/
-
+//this allows user to type topic and then populate gifs
 $("#add-topic").on("click", function() {
     event.preventDefault();
     //
@@ -59,27 +40,6 @@ $("#add-topic").on("click", function() {
       url: queryURL,
       method: "GET"
     })
-
-    ///
-    /*
-      .then(function(response) {
-
-      //
-        var queryURL = response.data.image_original_url;
-
-        //
-        var animalImage = $("<img>");
-
-        //
-        animalImage.attr("src", queryURL);
-        animalImage.attr("alt", "cat image");
-
-        //
-        $("#gif-pic").prepend(animalImage);
-        $("#rating").html(response);
-        console.log(queryURL);
-        console.log(response);
-      }); */ 
   
   .then(function(response) {
     var results = response.data;
@@ -93,11 +53,11 @@ $("#add-topic").on("click", function() {
 
       var p = $("<p>").text("Rating: " + rating);
 
-      var singleTopic = $("<img>");
-      singleTopic.attr("src", results[i].images.fixed_height.url);
+      var animalImage = $("<img>");
+      animalImage.attr("src", results[i].images.fixed_height.url);
 
       gifDiv.prepend(p);
-      gifDiv.prepend(singleTopic);
+      gifDiv.prepend(animalImage);
 
 
 
@@ -108,3 +68,52 @@ $("#add-topic").on("click", function() {
   
 });
 
+// now for button pause
+/*
+$(".gif-pic").on("click", function() {
+
+    var state = $(this).attr("topic-typed");
+
+    if (state === "still") {
+      $(this).attr("src", $(this).attr("data-animate"))
+      $(this).attr("topic-typed", "animate")
+    } else {
+      $(this).attr("src", $(this).attr("data-still"))
+      $(this).attr("topic-typed", "still")
+    }
+
+  });
+*/
+  //done with pause
+
+
+  //this adds gif pics for preselected topics at beggining og page
+$("button").on("click", function() {
+    var animal = $(this).attr("data-name");
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+      animal + "&api_key=1Ap9PRfNxbH1S8pDXRJkIkh2mwOKmiPR&limit=10";
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    })
+      .then(function(response) {
+        var results = response.data;
+
+        for (var i = 0; i < results.length; i++) {
+          var gifDiv = $("<div>");
+
+          var rating = results[i].rating;
+
+          var p = $("<p>").text("Rating: " + rating);
+
+          var animal = $("<img>");
+          animal.attr("src", results[i].images.fixed_height.url);
+
+          gifDiv.prepend(p);
+          gifDiv.prepend(animal);
+
+          $("#gif-pic").prepend(gifDiv);
+        }
+      });
+  });
