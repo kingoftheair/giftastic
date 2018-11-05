@@ -1,12 +1,15 @@
+//variables used
 var topics = ["skunk", "dog", "red dead redemption 2", "bison", "bird", "halo" ];
 var queryURL = "";
 var animal = "";
-var songleTopic = "";
-
-//Add buttons for original animal topic array
+var singleTopic = "";
 
 
-   
+
+
+   //function to create button 
+  function renderButtons() {
+    $("#topics-view").empty();
     for (var i = 0; i < topics.length; i++) {
         var a = $("<button>");
         a.addClass("topics");
@@ -14,24 +17,26 @@ var songleTopic = "";
         a.text(topics[i]);
         $("#topics-view").append(a);
     } 
+  }
   
 
-
+//function to
+function A(){
 $("#add-topic").on("click", function(event){
-   // event.preventDefault();
+    event.preventDefault();
     var singleTopic = $("#topic-typed").val().trim();
     topics.push(singleTopic);
-    //renderButtons();
+    renderButtons();
 
 
     event.preventDefault();
-    //
+    
    var singleTopic = $("#topic-typed").val()
  
 
    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
         singleTopic + "&api_key=1Ap9PRfNxbH1S8pDXRJkIkh2mwOKmiPR&limit=10";
-    //
+    
     $.ajax({
       url: queryURL,
       method: "GET"
@@ -42,7 +47,7 @@ $("#add-topic").on("click", function(event){
 
 
     for (var i = 0; i < results.length; i++) {
-      var gifDiv = $("<div>");
+      var gifDiv = $("<div1>");
 
       var rating = results[i].rating;
 
@@ -78,13 +83,15 @@ $("#add-topic").on("click", function(event){
   
 })
 })
+}
+  
 
-
+function B () {
 $("button").on("click", function() {
     var animal = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
       animal + "&api_key=1Ap9PRfNxbH1S8pDXRJkIkh2mwOKmiPR&limit=10";
-
+      //event.preventDefault();
     $.ajax({
       url: queryURL,
       method: "GET"
@@ -93,7 +100,7 @@ $("button").on("click", function() {
         var results = response.data;
 
         for (var i = 0; i < results.length; i++) {
-          var gifDiv = $("<div>");
+          var gifDiv = $("<div1>");
 
           var rating = results[i].rating;
 
@@ -127,3 +134,13 @@ $("button").on("click", function() {
         
     })
   })
+}
+
+//calling functions to run game
+renderButtons();
+A();
+B();
+  
+  
+
+
