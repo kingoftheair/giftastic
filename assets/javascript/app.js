@@ -12,26 +12,30 @@ var singleTopic = "";
     $("#topics-view").empty();
     for (var i = 0; i < topics.length; i++) {
         var a = $("<button>");
-        a.addClass("topics");
+        //a.addClass("topics");
         a.attr("data-name", topics[i]);
         a.text(topics[i]);
         $("#topics-view").append(a);
-    } 
+    };
   }
+  
+  renderButtons();
+  
+    
   
 
 //function to
-function A(){
+//function A(){
 $("#add-topic").on("click", function(event){
     event.preventDefault();
-    var singleTopic = $("#topic-typed").val().trim();
+    var singleTopic = $("#topic-typed").val();
     topics.push(singleTopic);
     renderButtons();
 
 
-    event.preventDefault();
+   // event.preventDefault();
     
-   var singleTopic = $("#topic-typed").val()
+   //var singleTopic = $("#topic-typed").val();
  
 
    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
@@ -83,16 +87,22 @@ $("#add-topic").on("click", function(event){
   
 })
 })
-}
 
   
+  
+  
+  
 
-function B () {
+  
+ // B();
+
+//function B () {
 $("button").on("click", function() {
     var animal = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
       animal + "&api_key=1Ap9PRfNxbH1S8pDXRJkIkh2mwOKmiPR&limit=10";
-      //event.preventDefault();
+      event.preventDefault();
+      
     $.ajax({
       url: queryURL,
       method: "GET"
@@ -132,16 +142,20 @@ $("button").on("click", function() {
               $(this).attr("src", $(this).attr("data-still"))
               $(this).attr("data-state", "still");
             }});
-           
+            
     })
-  })
-}
+  }) 
 
+  
+  
+  
 
+  //renderButtons();
 //calling functions to run game
-renderButtons();
-A();
-B();
+
+//B();
+
+
 
   
   
