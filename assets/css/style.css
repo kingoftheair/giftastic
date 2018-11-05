@@ -23,3 +23,9 @@ button {
 label {
     background-color:lightpink;
 }
+
+#gif-pic, #rating {
+    float:left;
+    position:absolute;
+}
+
