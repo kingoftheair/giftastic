@@ -1,5 +1,7 @@
 html, body {
-    background-color:lightslategray;
+    background-image:url("../images/oriental.png");
+    background-size:100%;
+    font-family:Lucida Grande;
 }
 
 .container {
@@ -8,11 +10,13 @@ html, body {
 }
 
 p {
-    color:white;
+    color:navy;
+    width:100px;
+    word-wrap: break-word;
 }
 
 button {
-    background-color:lightpink;
+    background-color:lightskyblue;
     text-align:center;
     margin:5px;
     border-radius: 10px;
@@ -20,19 +24,32 @@ button {
 }
 
 #topics-view {
-    
+    background-color:navy;
+    border-radius:15px;
+    height:50px;
+}
+
+#topic-typed {
+    height:40px;
+    writing-mode: horizontal-tb;
+    border-radius:15px;
 }
 
 #add-topic {
-    background-color:lightpink;
-    border-radius: 10px;
+    background-color:lightskyblue;
+    border-radius: 15px;
     padding:5px;
+    border: solid 3px navy;;
 }
 
 label {
-    background-color:lightpink;
+    background-color:lightskyblue;
     border-radius: 15px;
     padding:5px;
+    border:solid 3px navy;
+    height:100%;
+    width:200px;
+    text-align:center;
 }
 
 #gif-pic, #rating {
@@ -43,6 +60,8 @@ label {
 img {
     height:250px;
     width:250px;
+    border: solid 2px navy;
+    border-radius:8px;
 }
 
 

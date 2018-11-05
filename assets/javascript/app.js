@@ -1,5 +1,5 @@
 //variables used
-var topics = ["skunk", "dog", "red dead redemption 2", "bison", "bird", "halo" ];
+var topics = ["skunk", "dog", "red dead redemption 2", "bison", "bird", "everclear" ];
 var queryURL = "";
 var animal = "";
 var singleTopic = "";
@@ -18,10 +18,10 @@ var singleTopic = "";
         $("#topics-view").append(a);
     } 
   }
-  
+  renderButtons();
 
 //function to
-function A(){
+//function A(){
 $("#add-topic").on("click", function(event){
     event.preventDefault();
     var singleTopic = $("#topic-typed").val().trim();
@@ -50,7 +50,7 @@ $("#add-topic").on("click", function(event){
       var gifDiv = $("<div1>");
 
       var rating = results[i].rating;
-
+      
 
       var p = $("<p>").text("Rating: " + rating);
 
@@ -83,10 +83,10 @@ $("#add-topic").on("click", function(event){
   
 })
 })
-}
+
   
 
-function B () {
+//function B () {
 $("button").on("click", function() {
     var animal = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
@@ -103,7 +103,7 @@ $("button").on("click", function() {
           var gifDiv = $("<div1>");
 
           var rating = results[i].rating;
-
+          
           var p = $("<p>").text("Rating: " + rating);
 
           var animal = $("<img>");
@@ -131,15 +131,14 @@ $("button").on("click", function() {
               $(this).attr("src", $(this).attr("data-still"))
               $(this).attr("data-state", "still");
             }});
-        
+           
     })
   })
-}
+
 
 //calling functions to run game
-renderButtons();
-A();
-B();
+
+
   
   
 
