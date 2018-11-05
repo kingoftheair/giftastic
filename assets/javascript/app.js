@@ -18,10 +18,10 @@ var singleTopic = "";
         $("#topics-view").append(a);
     } 
   }
-  renderButtons();
+  
 
 //function to
-//function A(){
+function A(){
 $("#add-topic").on("click", function(event){
     event.preventDefault();
     var singleTopic = $("#topic-typed").val().trim();
@@ -83,10 +83,11 @@ $("#add-topic").on("click", function(event){
   
 })
 })
+}
 
   
 
-//function B () {
+function B () {
 $("button").on("click", function() {
     var animal = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
@@ -134,10 +135,13 @@ $("button").on("click", function() {
            
     })
   })
+}
 
 
 //calling functions to run game
-
+renderButtons();
+A();
+B();
 
   
   
