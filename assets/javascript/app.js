@@ -12,11 +12,12 @@ var singleTopic = "";
     $("#topics-view").empty();
     for (var i = 0; i < topics.length; i++) {
         var a = $("<button>");
-        //a.addClass("topics");
         a.attr("data-name", topics[i]);
         a.text(topics[i]);
         $("#topics-view").append(a);
     };
+
+    //onclick function to poulate gifs when user adds topic
     $("button").on("click", function() {
       var animal = $(this).attr("data-name");
       var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
@@ -38,7 +39,7 @@ var singleTopic = "";
             var p = $("<p>").text("Rating: " + rating);
   
             var animal = $("<img>");
-            //animal.attr("src", results[i].images.fixed_height.url);
+
             animal.attr("src", results[i].images.original_still.url);
             animal.attr("data-still", results[i].images.original_still.url)
             animal.attr("data-animate", results[i].images.original.url)
@@ -52,6 +53,7 @@ var singleTopic = "";
             $("#gif-pic").prepend(gifDiv);
             $("#rating").html(response);
           }
+
           $("img").on("click", function() {
             console.log("test"); 
             var state = $(this).attr("data-state");
@@ -71,19 +73,13 @@ var singleTopic = "";
   
     
   
+//function to dump gifs from preselected buttos on page
 
-//function to
-//function A(){
 $("#add-topic").on("click", function(event){
     event.preventDefault();
     var singleTopic = $("#topic-typed").val();
     topics.push(singleTopic);
     renderButtons();
-
-
-   // event.preventDefault();
-    
-   //var singleTopic = $("#topic-typed").val();
  
 
    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
@@ -107,7 +103,7 @@ $("#add-topic").on("click", function(event){
       var p = $("<p>").text("Rating: " + rating);
 
       var animalImage = $("<img>");
-      //animalImage.attr("src", results[i].images.fixed_height.url);
+      
       animalImage.attr("src", results[i].images.original_still.url);
       animalImage.attr("data-still", results[i].images.original_still.url)
       animalImage.attr("data-animate", results[i].images.original.url)
@@ -135,77 +131,3 @@ $("#add-topic").on("click", function(event){
   
 })
 })
-
-  
-  
-  
-  
-
-  
- // B();
-
-//function B () {
-/*$("button").on("click", function() {
-    var animal = $(this).attr("data-name");
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-      animal + "&api_key=1Ap9PRfNxbH1S8pDXRJkIkh2mwOKmiPR&limit=10";
-      event.preventDefault();
-      
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    })
-      .then(function(response) {
-        var results = response.data;
-
-        for (var i = 0; i < results.length; i++) {
-          var gifDiv = $("<div1>");
-
-          var rating = results[i].rating;
-          
-          var p = $("<p>").text("Rating: " + rating);
-
-          var animal = $("<img>");
-          //animal.attr("src", results[i].images.fixed_height.url);
-          animal.attr("src", results[i].images.original_still.url);
-          animal.attr("data-still", results[i].images.original_still.url)
-          animal.attr("data-animate", results[i].images.original.url)
-          animal.attr("data-state", "still");
-          animal.addClass("img-responsive center-block gif")
-
-          gifDiv.prepend(p);
-          gifDiv.prepend(animal);
-        
-
-          $("#gif-pic").prepend(gifDiv);
-          $("#rating").html(response);
-        }
-        $("img").on("click", function() {
-          console.log("test"); 
-          var state = $(this).attr("data-state");
-          if (state === "still") {
-              $(this).attr("src", $(this).attr("data-animate"));
-              $(this).attr("data-state", "animate");
-            } else if (state === "animate") {
-              $(this).attr("src", $(this).attr("data-still"))
-              $(this).attr("data-state", "still");
-            }});
-            
-    })
-  }) 
-
-  */
-  
-  
-
-  //renderButtons();
-//calling functions to run game
-
-//B();
-
-
-
-  
-  
-
-

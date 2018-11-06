@@ -58,8 +58,8 @@ label {
 }
 
 img {
-    height:250px;
-    width:250px;
+    height:325px;
+    width:325px;
     border: solid 2px navy;
     border-radius:8px;
 }
@@ -73,5 +73,21 @@ div1 {
 
 #topic-form {
     float:right;
+    margin-right:100px;
+}
+
+h1 {
+    font-size:60px;
+    background-color:lightskyblue;
+    width:350px;
+    text-align:center;
+    border-radius:15px;
+    border:solid 2px navy;
+    float:left;
+}
+
+#explain {
+    font-size:20px;
+    margin-right:-40px;
 }
 
