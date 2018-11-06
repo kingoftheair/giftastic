@@ -5,7 +5,19 @@ var animal = "";
 var singleTopic = "";
 
 
-
+//fiunction to pause and play GIFS
+function pauseAndStart() {
+$("img").on("click", function() {
+  console.log("test"); 
+  var state = $(this).attr("data-state");
+  if (state === "still") {
+      $(this).attr("src", $(this).attr("data-animate"));
+      $(this).attr("data-state", "animate");
+    } else if (state === "animate") {
+      $(this).attr("src", $(this).attr("data-still"))
+      $(this).attr("data-state", "still");
+    }});
+  }
 
    //function to create button 
   function renderButtons() {
@@ -17,7 +29,7 @@ var singleTopic = "";
         $("#topics-view").append(a);
     };
 
-    //onclick function to poulate gifs when user adds topic
+    //onclick function to poulate gifs when user adds topic, part of renderButtons function
     $("button").on("click", function() {
       var animal = $(this).attr("data-name");
       var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
@@ -54,27 +66,20 @@ var singleTopic = "";
             $("#rating").html(response);
           }
 
-          $("img").on("click", function() {
-            console.log("test"); 
-            var state = $(this).attr("data-state");
-            if (state === "still") {
-                $(this).attr("src", $(this).attr("data-animate"));
-                $(this).attr("data-state", "animate");
-              } else if (state === "animate") {
-                $(this).attr("src", $(this).attr("data-still"))
-                $(this).attr("data-state", "still");
-              }});
+          pauseAndStart();
               
       })
     }) 
   }  
   
-  renderButtons();
+  //renderButtons();
+  //populateGIF();
   
     
   
 //function to dump gifs from preselected buttos on page
 
+function populateGIF() {
 $("#add-topic").on("click", function(event){
     event.preventDefault();
     var singleTopic = $("#topic-typed").val();
@@ -118,16 +123,12 @@ $("#add-topic").on("click", function(event){
       $("#rating").html(response);
     }
 
-      $("img").on("click", function() {
-        console.log("test"); 
-        var state = $(this).attr("data-state");
-        if (state === "still") {
-            $(this).attr("src", $(this).attr("data-animate"));
-            $(this).attr("data-state", "animate");
-          } else if (state === "animate") {
-            $(this).attr("src", $(this).attr("data-still"))
-            $(this).attr("data-state", "still");
-          }});
+    pauseAndStart();
   
 })
 })
+}
+
+//frunctions to run everything
+  renderButtons();
+  populateGIF();
